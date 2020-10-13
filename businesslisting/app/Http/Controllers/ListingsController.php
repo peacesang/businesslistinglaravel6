@@ -80,6 +80,9 @@ class ListingsController extends Controller
     public function edit($id)
     {
         //
+        $listing=new Listing;
+        $listing=$listing::find($id);
+        return view('edit',compact('listing'));
     }
 
     /**
@@ -92,6 +95,23 @@ class ListingsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'email'
+        ]);
+        
+        $listing=Listing::find($id);
+        $listing->name=$request->name;
+        $listing->website=$request->website;
+        $listing->email=$request->email;
+        $listing->phone=$request->phone;
+        $listing->address=$request->address;
+        $listing->bio=$request->bio;
+        $listing->user_id=auth()->user()->id;
+        
+        $listing->save();
+
+        return redirect('/dashboard')->with('success',"listing successfully edited");
     }
 
     /**
@@ -102,6 +122,11 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
+        $listing=Listing::find($id);
+        $listing->delete();
+        return redirect('/dashboard')->with('success',"listing successfully deleted");
+
+
         //
     }
 }

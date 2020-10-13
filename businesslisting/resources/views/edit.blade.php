@@ -5,41 +5,42 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create Listing <a href="/dashboard" class="float-right btn btn-info btn-xs">Go back</a></div>
+                <div class="card-header">Editing Listing <a href="/dashboard" class="float-right btn btn-info btn-xs">Go back</a></div>
 
 
                 
                     {{-- <form method="post" action="/listings" > --}}
-                    <form method="post" action="{{route('listings.store')}}" >
+                    <form method="post" action="{{route('listings.update', $listing->id)}}" >
                     <div class="form-group" >
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName2"  name="name">
+                            <input type="text" class="form-control" id="exampleInputName2" value="{{$listing->name}}"  name="name">
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="exampleInputName2"  name="address">
+                            <input type="text" class="form-control" id="exampleInputName2"  value="{{$listing->address}}" name="address">
                         </div>
                         <div class="form-group">
                                 <label for="website">Website</label>
-                                <input type="text" class="form-control" id="exampleInputName2"  name="website">
+                                <input type="text" class="form-control" id="exampleInputName2"value="{{$listing->website}}"  name="website">
                         </div>
                         <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="exampleInputName2" placeholder="Jane Doe" name="email">
+                                <input type="email" class="form-control" id="exampleInputName2" value="{{$listing->email}}" name="email">
                         </div>
                         <div class="form-group">
                                 <label for="phone">phone</label>
-                                <input type="text" class="form-control" id="exampleInputName2"  name="phone">
+                                <input type="text" class="form-control" id="exampleInputName2" value="{{$listing->phone}}" name="phone">
                         </div>
                         <div class="form-group">
                                 <label for="bio">bio</label>
-                                <textarea class="form-control" rows="5" name="bio"></textarea>
+                                <textarea class="form-control" rows="5" name="bio">{{$listing->bio}}</textarea>
 
                         </div>
                         
                         @csrf
+                        @method("PUT")
                                 
-                        <button type="submit" class="btn btn-info">Create</button>
+                        <button type="submit" class="btn btn-info">Update</button>
                         
                     </form>
                     

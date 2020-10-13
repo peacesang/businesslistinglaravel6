@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard <span class="pull-right"><a href="/listings/create" class="btn btn-success btn-xs">Add Listing</a></span></div>
+                <div class="card-header">Dashboard <span class="float-right"><a href="/listings/create" class="btn btn-success btn-xs">Add Listing</a></span></div>
 
 
                 <div class="panel-body">
@@ -20,8 +20,20 @@
                         @foreach($listings as $listing)
                         <tr>
                             <td>{{$listing->name}}</td>
-                            <td></td>
-                            <td></td>
+                        <td><a class="btn btn-info float-right" href="/listings/{{$listing->id}}/edit">edit</a></td>
+                            <td>
+                                    <form method="post" action="{{route('listings.destroy',$listing->id)}}" onsubmit="return confirm('Are you sure you want to delete?')" >
+                                     
+                                                
+                                                @csrf
+                                                @method('DELETE')
+                                                        
+                                                <button type="submit" class="btn btn-danger" >Delete</button>
+                                                
+                                            </form>
+                                            
+                            
+                            </td>
                         </tr>
                         @endforeach
                     </table>
