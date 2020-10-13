@@ -15,7 +15,7 @@ Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index');
+ Route::get('/dashboard', 'DashboardController@index');
 
 Route::resource('listings','ListingsController');
 
